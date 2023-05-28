@@ -26,6 +26,19 @@
 <body>
   <div id="app">
     <h1>Agenda de contatos</h1>
+
+    <div v-for="contact in contacts" v-clock>
+      <img :src="contact.picture" alt="">
+
+      <div>
+        <address>
+          <p>{{ contact.firstName }} {{ contact.lastName }}</p>
+          <p>Email: {{ contact.email }}</p>
+          <p>Cidade: {{ contact.city }}</p>
+        </address>
+      </div>
+
+    </div>
   </div>
 
 </body>
