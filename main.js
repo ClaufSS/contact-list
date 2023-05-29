@@ -6,6 +6,7 @@ createApp({
     return {
       search: '',
       contacts: [],
+      isContactsLoaded: false,
     }
   },
 
@@ -20,7 +21,7 @@ createApp({
         const _search = this.search.trim().toLowerCase();
 
         return fullName.includes(_search);
-      })
+      });
     }
   },
 
@@ -55,11 +56,17 @@ createApp({
 
         this.contacts.push(contact);
       });
+    },
+
+    removeContact(index) {
+      this.contacts.splice(index, 1);
     }
   },
 
   async mounted() {
     await this.loadContacts();
+
+    this.isContactsLoaded = true
   }
 
 }).mount("#app");

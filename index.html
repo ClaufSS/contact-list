@@ -17,7 +17,7 @@
   <script src="main.js", type="module"></script>
 
   <style>
-    [v-clock] {
+    [v-cloak] {
       display: none;
     }
   </style>
@@ -29,18 +29,27 @@
 
     <input type="text" v-model="search">
 
-    <div v-for="contact in contactList">
-      <img :src="contact.picture" alt="">
 
-      <div>
-        <address v-clock>
-          <p>{{ contact.firstName }} {{ contact.lastName }}</p>
-          <p>Email: {{ contact.email }}</p>
-          <p>Cidade: {{ contact.city }}</p>
-        </address>
+    <div id="results">
+      <div v-show="isContactsLoaded & (contactList.length === 0)" v-cloak>
+        Nenhum contato encontrado!
+      </div>  
+
+      <div v-for="contact, index in contactList">
+        <img :src="contact.picture" :alt="contact.firstName">
+
+        <div>
+          <address v-cloak>
+            <p>{{ contact.firstName }} {{ contact.lastName }}</p>
+            <p>Email: {{ contact.email }}</p>
+            <p>Cidade: {{ contact.city }}</p>
+          </address>
+          <button @click="removeContact(index)">Remover</button>
+        </div>
+
       </div>
-
     </div>
+
   </div>
 
 </body>
