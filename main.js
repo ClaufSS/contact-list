@@ -4,7 +4,23 @@ import { createApp } from 'vue'
 createApp({
   data() {
     return {
+      search: '',
       contacts: [],
+    }
+  },
+
+  computed: {
+    contactList() {
+      if (/^\s*$/.test(this.search)) {
+        return this.contacts;
+      }
+
+      return this.contacts.filter(({ firstName, lastName }) => {
+        const fullName = (firstName + lastName).toLowerCase();
+        const _search = this.search.trim().toLowerCase();
+
+        return fullName.includes(_search);
+      })
     }
   },
 

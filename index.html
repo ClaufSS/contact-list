@@ -27,11 +27,13 @@
   <div id="app">
     <h1>Agenda de contatos</h1>
 
-    <div v-for="contact in contacts" v-clock>
+    <input type="text" v-model="search">
+
+    <div v-for="contact in contactList">
       <img :src="contact.picture" alt="">
 
       <div>
-        <address>
+        <address v-clock>
           <p>{{ contact.firstName }} {{ contact.lastName }}</p>
           <p>Email: {{ contact.email }}</p>
           <p>Cidade: {{ contact.city }}</p>
