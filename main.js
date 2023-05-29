@@ -10,7 +10,19 @@ createApp({
 
   methods: {
     async loadContacts() {
-      const response = await fetch('https://randomuser.me/api/?results=15');
+      const baseURL = 'https://randomuser.me'
+      const endPoint = '/api'
+
+      const search = new URLSearchParams({
+        format: 'JSON',
+        results: '15',
+        inc: 'name,location,picture,email',
+        nat: 'br'
+      }).toString();
+
+      const url = new URL(`${endPoint}?${search}`, baseURL);
+
+      const response = await fetch(url);
       const { results } = await response.json();
 
 
@@ -24,8 +36,6 @@ createApp({
           email,
           city
         }
-
-        console.log(contact)
 
         this.contacts.push(contact);
       });
