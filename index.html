@@ -16,18 +16,13 @@
 
   <script src="main.js", type="module"></script>
 
-  <style>
-    [v-cloak] {
-      display: none;
-    }
-  </style>
-
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="app">
     <h1>Agenda de contatos</h1>
 
-    <input type="text" v-model="search">
+    <input id="search" type="text" v-model="search">
 
 
     <div id="results">
@@ -35,15 +30,16 @@
         Nenhum contato encontrado!
       </div>  
 
-      <div v-for="contact, index in contactList">
+      <div class="card" v-for="contact, index in contactList">
         <img :src="contact.picture" :alt="contact.firstName">
 
         <div>
           <address v-cloak>
-            <p>{{ contact.firstName }} {{ contact.lastName }}</p>
-            <p>Email: {{ contact.email }}</p>
-            <p>Cidade: {{ contact.city }}</p>
+            <strong>{{ contact.firstName }} {{ contact.lastName }}</strong>
+            <p>{{ contact.email }}</p>
+            <p>{{ contact.city }} - {{ contact.state }}</p>
           </address>
+
           <button @click="removeContact(index)">Remover</button>
         </div>
 

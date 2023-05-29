@@ -44,14 +44,15 @@ createApp({
 
 
       results.forEach(model => {
-        const {name, email, picture, location:{ city }} = model;
+        const {name, email, picture, location:{ city, state }} = model;
 
         const contact = {
           picture: picture.large,
           firstName: name.first,
           lastName: name.last,
           email,
-          city
+          city,
+          state
         }
 
         this.contacts.push(contact);
